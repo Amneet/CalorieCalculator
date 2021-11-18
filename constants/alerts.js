@@ -1,0 +1,10 @@
+export const requiredFieldsAlert = 'All * fields are required!';
+export const startDateAlert = 'Please enter subscription start date first!';
+export const wrongUserPass = 'Wrong Username Password!';
+export const wrongUsername = 'Please enter correct username!';
+export const wrongPassword = 'Please enter correct password!';
+export const UserInserted = 'User added successfully!';
+export const UserPresent = 'User already present!';
+export const UserRemoved = 'User removed successfully!';
+export const invalidPhoneNumber = 'Enter Valid Phone Number!';
+export const userUpdated = 'User Updated Successfully!';
