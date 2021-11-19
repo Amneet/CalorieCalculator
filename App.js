@@ -4,13 +4,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import CameraScreen from './screens/Camera';
+import BarCode from './screens/BarCode';
 import AddManuallyScreen from './screens/AddManually';
 import ViewHistoryScreen from './screens/ViewHistory';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -33,7 +34,7 @@ export default function App() {
         />
         <Stack.Screen
           name="Camera"
-          component={CameraScreen}
+          component={BarCode}
           options={{
             headerShown: false,
           }}

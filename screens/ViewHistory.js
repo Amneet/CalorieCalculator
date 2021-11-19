@@ -11,12 +11,7 @@ class ViewHistory extends React.Component {
         super();
         this.state = {
             animating: false,
-            cameraVisible: false
         }
-    }
-
-    async handleClick() {
-        this.setState({ cameraVisible: true })
     }
 
     render() {
@@ -36,7 +31,7 @@ class ViewHistory extends React.Component {
                     <View style={styles.container}>
                         <Text style={styles.text}>VIEW HISTORY PAGE COMING SOON!</Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-                            <Icon name="arrow-back" size='25' raised />
+                            <Icon name="arrow-back" raised />
                         </TouchableOpacity>
                     </View>
                     {/* </ImageBackground> */}

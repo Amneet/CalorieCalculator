@@ -16,7 +16,8 @@ class AddManually extends React.Component {
     }
 
     async handleClick() {
-        this.setState({ cameraVisible: true })
+        // this.setState({ cameraVisible: true })
+        this.props.navigation.navigate('Camera')
     }
 
     render() {
@@ -49,7 +50,8 @@ class AddManually extends React.Component {
                             {
                                 this.state.cameraVisible
                                     ?
-                                    this.props.navigation.navigate('Camera')
+                                    alert('HELLO')
+                                    // this.props.navigation.navigate('Camera')
                                     // <Cameraa />
                                     :
                                     null

@@ -5,42 +5,20 @@ import { StyleSheet, Text, View, ImageBackground, ActivityIndicator } from 'reac
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 
-class HomeScreen extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {
-            animating: false,
-            cameraVisible: false
-        }
-    }
-
-    async handleClick() {
-        this.setState({ cameraVisible: true })
-    }
+class AddManually extends React.Component {
 
     render() {
-        const animating = this.state.animating
         return (
-            animating === true ?
+            <View style={styles.container}>
+                {/* <ImageBackground source={require('../assets/homeBg1.jpg')} style={styles.imgBg}> */}
                 <View style={styles.container}>
-                    <ActivityIndicator
-                        animating={animating}
-                        color='white'
-                        size="large"
-                        style={styles.preLoaderOn} />
+                    <Text style={styles.text}>ADD MANUALLY PAGE COMING SOON!</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                        <Icon name="arrow-back" raised />
+                    </TouchableOpacity>
                 </View>
-                :
-                <View style={styles.container}>
-                    {/* <ImageBackground source={require('../assets/homeBg1.jpg')} style={styles.imgBg}> */}
-                    <View style={styles.container}>
-                        <Text style={styles.text}>ADD MANUALLY PAGE COMING SOON!</Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
-                            <Icon name="arrow-back" size='25' raised />
-                        </TouchableOpacity>
-                    </View>
-                    {/* </ImageBackground> */}
-                </View>
+                {/* </ImageBackground> */}
+            </View>
         )
     }
 }
@@ -73,4 +51,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeScreen;
+export default AddManually;
