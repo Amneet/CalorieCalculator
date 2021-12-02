@@ -17,7 +17,7 @@ class AddManually extends React.Component {
 
     async handleClick() {
         // this.setState({ cameraVisible: true })
-        this.props.navigation.navigate('Camera')
+        this.props.navigation.navigate('Camera', {loggedin: true})
     }
 
     render() {

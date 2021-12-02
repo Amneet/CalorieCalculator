@@ -1,7 +1,7 @@
 //@author - Amneet Singh
 
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, ActivityIndicator, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 

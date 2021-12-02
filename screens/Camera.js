@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 import { Icon } from 'react-native-elements';
 
-class Cameraa extends React.Component {
-    constructor() {
-        super()
+class App extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             hasPermission: null,
             type: Camera.Constants.Type.back,
-            ref: null
+            loggedin: ''
         }
     }
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+            loggedin: navigation.route.params.loggedin,
+        };
+    };
+    
     componentDidMount() {
+        // const { loggedin } = this.props.navigation.route.params.loggedin;
+        // this.setState({loggedin})
         async () => {
-            const { status } = await Camera.requestPermissionsAsync();
-            this.setState({ status: 'granted' });
+            const { status } = await Camera.requestCameraPermissionsAsync();
+            this.setState({hasPermission: status === 'granted'});
         }
 
         if (this.state.hasPermission === null) {
@@ -27,40 +35,27 @@ class Cameraa extends React.Component {
         }
     }
 
-    async takePicture() {
-        if (ref) {
-            let photo = await ref.current.takePictureAsync();
-            console.log(photo);
-        }
-        else {
-            alert('NOOOOOOo')
-        }
-        alert('Picture Clicked!')
-    };
-
-    onPictureSaved = photo => {
-        console.log(photo);
-    }
-
     render() {
-        return (
+        return(
             <View style={styles.container}>
-                <Camera style={styles.camera} type={this.state.type} ref={this.state.ref} >
-                    <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Home')}>
-                        <Icon name="arrow-back" size='20' raised />
+                <Camera style={styles.camera} type={this.state.type} >
+                    <TouchableOpacity style={styles.backButton} onPress={() => (this.props.route.params.loggedin ? this.props.navigation.navigate('Home') : this.props.navigation.navigate('Login') )}>
+                        <Icon name="arrow-back" size={20} raised />
                     </TouchableOpacity>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity
                             style={styles.flipButton}
                             onPress={() => {
+                                this.setState(
                                 this.state.type === Camera.Constants.Type.back
-                                    ? this.setState({type: Camera.Constants.Type.front})
-                                    : this.setState({type: Camera.Constants.Type.back})
+                                    ? {type: Camera.Constants.Type.front}
+                                    : {type: Camera.Constants.Type.back}
+                                );
                             }}>
-                            <Icon name="refresh" color="#fff" size='20' reverse reverseColor="#black" />
+                            <Icon name="refresh" color="#fff" size={20} reverse reverseColor="black" />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.clickButton} onPress={() => alert('Picture Clicked!')} >
-                            <Icon name="camera" color="#fff" size='35' reverse reverseColor="#black" />
+                        <TouchableOpacity style={styles.clickButton} onPress={() => alert('Clicked!')} >
+                            <Icon name="camera" color="#fff" size={35} reverse reverseColor="black" />
                         </TouchableOpacity>
                     </View>
                 </Camera>
@@ -71,34 +66,38 @@ class Cameraa extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    camera: {
-        flex: 1,
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 25,
-        alignItems: 'center'
-    },
-    flipButton: {
-        alignSelf: 'flex-end',
-    },
-    clickButton: {
-        alignSelf: 'flex-end',
-        marginLeft: '20%'
-    },
-    backButton: {
-        marginTop: 40,
-        marginLeft: 5
-    },
-    text: {
-        fontSize: 18,
-        color: 'white',
-    },
+  container: {
+    flex: 1,
+  },
+  camera: {
+    flex: 1,
+  },
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    margin: 20,
+  },
+  button: {
+    flex: 0.1,
+    alignSelf: 'flex-end',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 18,
+    color: 'white',
+  },
+  backButton: {
+      marginTop: 50,
+      marginLeft: 10
+  },
+  flipButton: {
+      marginTop: '175%',
+  },
+  clickButton: {
+      marginTop: '170%',
+      marginLeft: '20%'
+  }
 });
 
-export default Cameraa;
+export default App;

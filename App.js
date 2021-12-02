@@ -34,7 +34,7 @@ export default function App() {
         />
         <Stack.Screen
           name="Camera"
-          component={BarCode}
+          component={CameraScreen}
           options={{
             headerShown: false,
           }}

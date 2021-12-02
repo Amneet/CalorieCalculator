@@ -37,14 +37,15 @@ class Login extends React.Component {
   }
 
   handleWithoutLogin = () => {
-    Alert.alert(
-      'Oh No!',
-      'Feature Coming Soon!',
-      [
-        { text: 'OK' }
-      ],
-      { cancelable: false }
-    )
+    this.props.navigation.navigate('Camera', {loggedin: false})
+    // Alert.alert(
+    //   'Oh No!',
+    //   'Feature Coming Soon!',
+    //   [
+    //     { text: 'OK' }
+    //   ],
+    //   { cancelable: false }
+    // )
   }
 
   handleLogin = () => {
