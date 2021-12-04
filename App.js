@@ -6,12 +6,14 @@ import HomeScreen from './screens/HomeScreen';
 import CameraScreen from './screens/Camera';
 import BarCode from './screens/BarCode';
 import AddManuallyScreen from './screens/AddManually';
+import Register from './screens/Register';
 import ViewHistoryScreen from './screens/ViewHistory';
+import Results from './screens/Results';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -21,6 +23,13 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={Login}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
           options={{
             headerShown: false,
           }}
@@ -49,6 +58,13 @@ export default function App() {
         <Stack.Screen
           name="History"
           component={ViewHistoryScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Results"
+          component={Results}
           options={{
             headerShown: false,
           }}

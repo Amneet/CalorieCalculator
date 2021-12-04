@@ -54,7 +54,7 @@ class App extends React.Component {
                             }}>
                             <Icon name="refresh" color="#fff" size={20} reverse reverseColor="black" />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.clickButton} onPress={() => alert('Clicked!')} >
+                        <TouchableOpacity style={styles.clickButton} onPress={() => this.props.navigation.navigate('Results', {loggedin: this.props.route.params.loggedin})} >
                             <Icon name="camera" color="#fff" size={35} reverse reverseColor="black" />
                         </TouchableOpacity>
                     </View>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   backButton: {
-      marginTop: 50,
+      marginTop: 30,
       marginLeft: 10
   },
   flipButton: {

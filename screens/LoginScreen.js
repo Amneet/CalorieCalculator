@@ -105,6 +105,7 @@ class Login extends React.Component {
         <View style={styles.container}>
           <ImageBackground source={require('../assets/foodBg4.jpg')} style={styles.imgBg}>
             <View style={styles.container}>
+              <Text style={styles.heading}>Calorie Counter</Text>
               <Text style={styles.loginHeading}>LOGIN</Text>
               <TextInput
                 style={styles.input}
@@ -139,6 +140,11 @@ class Login extends React.Component {
                   </TouchableOpacity>
               }
 
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
+                <View style={styles.nonLogin}>
+                  <Text>Or Sign-up Instead!</Text>
+                </View>
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => this.handleWithoutLogin()}>
                 <View style={styles.nonLogin}>
                   <Text>Scan Without Logging In!</Text>
@@ -169,14 +175,27 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
+  heading: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: 'black',
+    marginBottom: 100,
+    fontFamily: 'serif',
+    marginTop: 10,
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    width: '90%',
+    textAlign: 'center',
+    padding: 10,
+    borderRadius: 10,
+    borderColor: '#fff'
+  },
   loginHeading: {
     fontWeight: 'bold',
     fontSize: 25,
     color: 'white',
     marginBottom: 30,
     fontFamily: 'serif',
-    marginTop: 150,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: 'rgba(255,255,255,0.5)',
     width: '40%',
     textAlign: 'center',
     padding: 10,
@@ -208,7 +227,7 @@ const styles = StyleSheet.create({
   },
   nonLogin: {
     margin: 10,
-    marginTop: 150,
+    marginTop: 50,
     padding: 10,
     backgroundColor: '#f0f0f0',
     borderRadius: 12,

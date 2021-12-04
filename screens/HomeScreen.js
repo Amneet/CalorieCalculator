@@ -10,9 +10,15 @@ class AddManually extends React.Component {
     constructor() {
         super();
         this.state = {
-            animating: false,
+            animating: true,
             cameraVisible: false
         }
+    }
+    
+    componentDidMount() {
+        setTimeout(function() {
+            this.setState({animating: false})
+        }.bind(this), 1500)
     }
 
     async handleClick() {
@@ -23,17 +29,18 @@ class AddManually extends React.Component {
     render() {
         const animating = this.state.animating
         return (
-            animating === true ?
+            <ImageBackground source={require('../assets/homeBg2.jpg')} style={styles.imgBg}>
+            {animating === true ?
                 <View style={styles.container}>
                     <ActivityIndicator
                         animating={animating}
-                        color='white'
+                        color='gray'
                         size="large"
                         style={styles.preLoaderOn} />
                 </View>
                 :
                 <View style={styles.container}>
-                    <ImageBackground source={require('../assets/homeBg2.jpg')} style={styles.imgBg}>
+                    
                         <View style={styles.container}>
                             <View style={styles.logOut}>
                                 <TouchableOpacity
@@ -43,7 +50,7 @@ class AddManually extends React.Component {
                                 </TouchableOpacity>
                             </View>
                             <Image style={styles.logoImg} source={require('../assets/icon1.png')} />
-                            <Text style={styles.loginHeading}>Food Calories Calculator</Text>
+                            <Text style={styles.loginHeading}>Calorie Counter</Text>
                             <TouchableOpacity style={styles.updateAllButton} onPress={() => this.handleClick()}>
                                 <Text style={styles.updateAllButtonText}>Scan Food Item</Text>
                             </TouchableOpacity>
@@ -63,8 +70,8 @@ class AddManually extends React.Component {
                                 <Text style={styles.buttonText}>View History</Text>
                             </TouchableOpacity>
                         </View>
-                    </ImageBackground>
-                </View>
+                </View>}
+                </ImageBackground>
         )
     }
 }
@@ -77,7 +84,7 @@ const styles = StyleSheet.create({
     logOut: {
         position: 'absolute',
         top: 45,
-        right: 25,
+        right: -40,
         borderColor: 'white',
         borderWidth: 2,
         borderRadius: 20,
@@ -140,7 +147,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0,0,0,.55)',
+        backgroundColor: 'rgba(255,255,255,.55)',
     }
 });
 

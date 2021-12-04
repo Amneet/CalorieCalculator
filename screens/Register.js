@@ -1,12 +1,12 @@
 //@author - Amneet Singh
 
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, ActivityIndicator, ScrollView } from 'react-native';
-import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View, ImageBackground, ActivityIndicator, ScrollView, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements';
 import Data from './data/history.json'
 import { Block, Accordion } from 'galio-framework'
-class AddManually extends React.Component {
+class Register extends React.Component {
 
     constructor() {
         super();
@@ -27,10 +27,14 @@ class AddManually extends React.Component {
         }.bind(this), 1500)
     }
 
-    handleSubmit = () => {        
+    handleReset = () => {       
+        this.setState({calories: '', protein: '', cholesterol: '', fat: '', carbohydrates: '', sodium: ''}) 
+    }
+    
+    handleRegister = () => {        
         this.state.calories && this.state.fat && this.state.sodium && this.state.cholesterol && this.state.carbohydrates && this.state.protein 
         ? 
-        (alert('Submitted'), this.setState({calories: '', protein: '', cholesterol: '', fat: '', carbohydrates: '', sodium: ''})) 
+        (alert('Please Check Your Email For The Link.'), this.setState({calories: '', protein: '', cholesterol: '', fat: '', carbohydrates: '', sodium: ''})) 
         : 
         alert('Please Enter All Values')
     }
@@ -50,67 +54,73 @@ class AddManually extends React.Component {
                 :
                 <View style={styles.container}>
                         <View style={styles.container}>
-                                <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Home')}>
+                                <TouchableOpacity style={styles.backButton} onPress={() => this.props.navigation.navigate('Login')}>
                                     <View style={styles.row}>
                                         <Icon name="arrow-back" raised size={17} />
-                                        <Text style={styles.text}>ADD MANUALLY</Text>
+                                        <Text style={styles.text}>REGISTER</Text>
                                     </View>
                                 </TouchableOpacity>
                             <ScrollView>
                                 <View style={styles.historyBlock}>
                                     <TextInput
                                         style={styles.input}
-                                        placeholder="Enter Calories"
+                                        placeholder="First Name"
                                         placeholderTextColor='black'
-                                        keyboardType = 'number-pad'
                                         onChangeText={(calories) => this.setState({ calories })}
                                         value={this.state.calories}
                                     />
                                     <TextInput
                                         style={styles.input}
-                                        placeholder="Enter Fat"
-                                        keyboardType = 'number-pad'
+                                        placeholder="Last Name"
                                         placeholderTextColor='black'
                                         onChangeText={(fat) => this.setState({ fat })}
                                         value={this.state.fat}
                                     />
                                     <TextInput
                                         style={styles.input}
-                                        placeholder="Enter Cholesterol"
-                                        keyboardType = 'number-pad'
+                                        placeholder="Email ID"
+                                        keyboardType = 'email-address'
                                         placeholderTextColor='black'
                                         onChangeText={(cholesterol) => this.setState({ cholesterol })}
                                         value={this.state.cholesterol}
                                     />
                                     <TextInput
                                         style={styles.input}
-                                        placeholder="Enter Sodium"
+                                        placeholder="Password"
                                         placeholderTextColor='black'
-                                        keyboardType = 'number-pad'
+                                        secureTextEntry={true}
                                         onChangeText={(sodium) => this.setState({ sodium })}
                                         value={this.state.sodium}
                                     />
                                     <TextInput
                                         style={styles.input}
-                                        placeholder="Enter Carbohydrates"
-                                        keyboardType = 'number-pad'
+                                        placeholder="Re-Enter Password"
+                                        secureTextEntry={true}
                                         placeholderTextColor='black'
                                         onChangeText={(carbohydrates) => this.setState({ carbohydrates })}
                                         value={this.state.carbohydrates}
                                     />
                                     <TextInput
                                         style={styles.input}
-                                        placeholder="Enter Protein"
+                                        placeholder="Contact Number"
                                         keyboardType = 'number-pad'
                                         placeholderTextColor='black'
+                                        maxLength={10}
                                         onChangeText={(protein) => this.setState({ protein })}
                                         value={this.state.protein}
                                     />
-                                    <TouchableOpacity onPress={() => this.handleSubmit()}>
-                                        <View style={styles.nonLogin}>
-                                            <Text style={{color: '#fff', paddingRight: 20, paddingLeft: 20}}>Submit!</Text>
-                                        </View>
-                                    </TouchableOpacity>
+                                    <View style={styles.buttonRow}>
+                                        <TouchableOpacity onPress={() => this.handleReset()}>
+                                            <View style={styles.reset}>
+                                                <Text style={{color: '#fff', paddingRight: 20, paddingLeft: 20}}>Reset!</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => this.handleRegister()}>
+                                            <View style={styles.nonLogin}>
+                                                <Text style={{color: '#fff', paddingRight: 20, paddingLeft: 20}}>Register!</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </ScrollView>
                         </View>
@@ -151,6 +161,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'rgba(255,255,255,0.7)',
     },
+    buttonRow: {
+        flexDirection: 'row'
+    },
     form: {
         flexDirection: 'row',
         backgroundColor: 'rgba(255,255,255,0.7)',
@@ -186,7 +199,15 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         borderColor: '#fff',
         borderWidth: 1
+    },
+    reset: {
+        margin: 10,
+        padding: 10,
+        backgroundColor: 'red',
+        borderRadius: 7,
+        borderColor: '#fff',
+        borderWidth: 1
     }
 });
 
-export default AddManually;
+export default Register;
