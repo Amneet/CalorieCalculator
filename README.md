@@ -1,3 +1,3 @@
 # CalorieCalculator
 
-This is a Personal Food Calorie App made for the Course ELG 5100 - SEPM. 
+This is a personal food calorie app made as a project for the course: ELG 5100 - Software Engineering Project Management (SEPM) taken at masters level at the University of Ottawa.
